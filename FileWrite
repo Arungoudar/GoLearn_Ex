@@ -1,0 +1,50 @@
+public class FileWrite {
+    public FileWrite() {
+        super();
+    }
+    public static void main(String args[]){
+            List<String> userList = null; 
+                  try { 
+                     File file = new File("D:\\names.txt"); 
+                     if (true) { 
+                        //User user = new User(1, "Mahesh", "Teacher"); 
+                        userList = new ArrayList<String>(); 
+                        userList.add(""); 
+                         userList.add("abc"); 
+                         userList.add("cd"); 
+                         userList.add("ef"); 
+                         userList.add("lm"); 
+                         userList.add("op"); 
+                         userList.add("op22"); 
+                         userList.add("op24");
+                        saveUserList(userList); 
+                     } 
+                     else{ 
+                        FileInputStream fis = new FileInputStream(file); 
+                        ObjectInputStream ois = new ObjectInputStream(fis); 
+                        userList = (List<String>) ois.readObject(); 
+                        ois.close(); 
+                     } 
+                  } catch (IOException e) { 
+                     e.printStackTrace(); 
+                  } catch (ClassNotFoundException e) { 
+                     e.printStackTrace(); 
+                  }   
+        }
+    
+    private static void saveUserList(List<String> userList){ 
+    try { 
+             File file = new File("D:\\name.txt"); 
+             FileOutputStream fos;  
+             fos = new FileOutputStream(file); 
+             ObjectOutputStream oos = new ObjectOutputStream(fos); 
+             oos.writeObject(userList.toString()); 
+             oos.close(); 
+          } catch (FileNotFoundException e) { 
+             e.printStackTrace(); 
+          } catch (IOException e) { 
+             e.printStackTrace(); 
+          } 
+    }
+    
+}
