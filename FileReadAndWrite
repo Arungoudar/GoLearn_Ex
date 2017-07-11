@@ -1,0 +1,52 @@
+package RestServiceProject;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class FileWrite {
+    public FileWrite() {
+        super();
+    }
+    public static void main(String args[])throws Exception {
+            BufferedReader br =null;
+        try {
+            br = new BufferedReader(new FileReader("D:\\names.txt"));// your destination file
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found");
+        }
+        try {
+                StringBuilder sb = new StringBuilder();
+                String line = br.readLine();
+
+                while (line != null) {
+                    sb.append(line);
+                    sb.append("\n");
+                    line = br.readLine();
+                }
+                String everything = sb.toString();
+                saveUserList(everything);
+              
+            } catch (IOException e) {
+            System.out.println("Exception while reading ");
+        } finally {
+                br.close();  
+            } 
+                     } 
+                     
+        
+    
+    private static void saveUserList(String userList){ 
+    try { 
+              PrintWriter writer = new PrintWriter("D:\\name.txt", "UTF-8");// your destination 
+              writer.write(userList);
+             writer.close(); 
+          } catch (FileNotFoundException e) { 
+             e.printStackTrace(); 
+          } catch (IOException e) { 
+             e.printStackTrace(); 
+          } 
+    }
+    
+}
